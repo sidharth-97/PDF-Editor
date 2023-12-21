@@ -2,6 +2,7 @@
 import { ChangeEvent, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import CopyPdf from "./CopyPdf";
+import ViewPdf from "./ViewPdf";
 
 const PdfSelector: React.FC = () => {
     const [file,setFile]=useState<File|null>(null)
@@ -44,7 +45,7 @@ const PdfSelector: React.FC = () => {
           Select your pdf
         </Button>
           </header>}
-        {file &&  <CopyPdf PdfBytes={file}/>}
+          {file && <ViewPdf pdf={file} />}
           
     </section>
   );
