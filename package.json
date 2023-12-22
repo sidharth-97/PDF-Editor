@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
+    "mongoose": "^8.0.3",
     "next": "14.0.4",
     "pdf-lib": "^1.17.1",
     "react": "^18",
