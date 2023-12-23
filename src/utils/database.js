@@ -11,7 +11,7 @@ export const connectedToDB = async () => {
     }
     try {
         await mongoose.connect(process.env.MONGO_URI, {
-            dbName: "cluster0",
+            dbName: "pdfApp",
             useNewUrlParser: true,
             useUnifiedTopology:true
         })
