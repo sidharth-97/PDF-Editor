@@ -8,8 +8,8 @@ export default function Home() {
     <div>
       <SessionProvider>
          <Navbar/>
-      </SessionProvider>
       <PdfSelector />
+      </SessionProvider>
     </div>
   )
 }

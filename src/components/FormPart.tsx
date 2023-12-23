@@ -6,15 +6,20 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 import React, { useState } from "react";
 
 const FormPart = React.memo(({ pdf }) => {
-const [value,setValue]=useState("")
+  const [value, setValue] = useState("")
+  const { data: session } = useSession()
+  const router=useRouter()
   const formData = new FormData()
-  console.log(pdf,"pdf in form");
+  console.log(value,"value in form");
     formData.append("file", pdf)
   formData.append("value", value)
-
+  if(session?.user?.id)
+formData.append("id",session?.user.id)
   const handleSubmit = async (e) => {
     e.preventDefault()
     const response = await fetch('/api/pdf', {
@@ -22,8 +27,8 @@ const [value,setValue]=useState("")
     body: formData,
   });
 
-  const data = await response.json();
-  console.log(data);
+    const data = await response.json();
+  router.push(data)
   }
 
   return (
