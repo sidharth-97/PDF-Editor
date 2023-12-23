@@ -10,9 +10,22 @@ import React, { useState } from "react";
 
 const FormPart = React.memo(({ pdf }) => {
 const [value,setValue]=useState("")
-    const formData = new FormData()
-    formData.append("pdf", pdf)
-    formData.append("value", value)
+  const formData = new FormData()
+  console.log(pdf,"pdf in form");
+    formData.append("file", pdf)
+  formData.append("value", value)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const response = await fetch('/api/pdf', {
+    method: 'POST',
+    body: formData,
+  });
+
+  const data = await response.json();
+  console.log(data);
+  }
+
   return (
       <>
           <form encType="multipart/form-data">
@@ -40,7 +53,8 @@ const [value,setValue]=useState("")
             />
           </div>
         </RadioGroup>
-      </FormControl>
+        </FormControl>
+        <button onClick={handleSubmit}>Submit</button>
         </form>
      
     </>
