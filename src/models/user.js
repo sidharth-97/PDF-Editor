@@ -13,9 +13,12 @@ const UserSchema = new Schema({
     image: {
         type: String
     },
-    pdf: {
-        type:[String]
-    }
+    pdf: [
+        {
+            name: String,
+            url: String,
+          },
+    ]
 })
 
 const User = models.User || model("User", UserSchema)

@@ -10,7 +10,7 @@ export const config = {
 };
 
 export async function POST(req) {
-  let cloudinaryResult;
+  let cloudinaryResult; // Move the declaration outside
 
   try {
     const formData = await req.formData();
@@ -30,31 +30,35 @@ export async function POST(req) {
 
     await fs.writeFile(filePath, generatedPdfBytes);
 
-    [cloudinaryResult] = await Promise.all([
-      new Promise((resolve, reject) => {
-        const cloudinaryUpload = cloudinary.uploader.upload_stream(
-          {
-            resource_type: "raw",
-          },
-          (error, result) => {
-            if (error) {
-              console.error("Error uploading to Cloudinary:", error);
-              reject(error);
-            } else {
-              console.log("Cloudinary upload result:", result);
-              resolve(result);
-            }
+    const cloudinaryPromise = new Promise((resolve, reject) => {
+      const cloudinaryUpload = cloudinary.uploader.upload_stream(
+        {
+          resource_type: "raw",
+        },
+        (error, result) => {
+          if (error) {
+            console.error("Error uploading to Cloudinary:", error);
+            reject(error);
+          } else {
+            console.log("Cloudinary upload result:", result);
+            resolve(result);
           }
-        );
+        }
+      );
 
-        cloudinaryUpload.end(generatedPdfBytes);
-      }),
-      User.findByIdAndUpdate(
-        id,
-        { $push: { pdf: cloudinaryResult?.secure_url } },
-        { new: true }
-      ),
-    ]);
+      cloudinaryUpload.end(generatedPdfBytes);
+    });
+    [cloudinaryResult] = await Promise.all([cloudinaryPromise]);
+
+    const userPromise = User.findById(id).then((user) => {
+      if (!user) {
+        throw new Error("User not found");
+      }
+      user.pdf.push({ name: fileName, url: cloudinaryResult?.secure_url });
+
+      return user.save();
+    });
+
 
     if (!cloudinaryResult) {
       console.error("Cloudinary upload result is undefined");
