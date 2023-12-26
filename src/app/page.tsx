@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <div>
       <SessionProvider>
-         <Navbar/>
       <PdfSelector />
       </SessionProvider>
     </div>

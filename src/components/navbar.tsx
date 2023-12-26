@@ -19,12 +19,12 @@ const Navbar = () => {
   return (
     <nav className="relative select-none bg-gray-200 lg:flex lg:items-stretch w-full">
       <div className="flex flex-no-shrink items-stretch h-12">
-        <a
-          href="#"
+        <Link
+          href="/"
           className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300"
         >
           PDF Editor
-        </a>
+        </Link>
 
         <button className="block lg:hidden cursor-pointer ml-auto relative w-12 h-12 p-4">
           <svg
@@ -46,12 +46,12 @@ const Navbar = () => {
       {session?.user ? (
         <div className="lg:flex lg:items-stretch lg:flex-no-shrink lg:flex-grow">
           <div className="lg:flex lg:items-stretch lg:justify-end ml-auto">
-            <a
-              href="#"
+            <Link
+              href="/dashboard"
               className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300"
             >
               Your pdfs
-            </a>
+            </Link>
             <Button
               onClick={signOut}
               className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300"

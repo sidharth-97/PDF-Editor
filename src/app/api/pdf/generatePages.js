@@ -1,13 +1,14 @@
-export default function generatePages(page,value){
+export default function generatePages(page, value) {
+    console.log(page);
     let arr=[]
     if(value=="even"){
-        for(let i=0;i<page;i++){
+        for(let i=1;i<=page+1;i++){
             if(i%2==0){
                 arr.push(i)
             }
         }
     }else if(value=="odd"){
-         for(let i=0;i<page;i++){
+         for(let i=1;i<=page+1;i++){
             if(i%2!=0){
                 arr.push(i)
             }
