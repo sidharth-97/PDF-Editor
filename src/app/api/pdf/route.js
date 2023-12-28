@@ -28,7 +28,7 @@ export async function POST(req) {
     
     const generatedPdfBytes = await generatePdf(buffer, value);
 
-    await fs.writeFile(filePath, generatedPdfBytes);
+
 
     const cloudinaryPromise = new Promise((resolve, reject) => {
       const cloudinaryUpload = cloudinary.uploader.upload_stream(
