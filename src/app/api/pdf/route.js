@@ -27,7 +27,6 @@ export async function POST(req) {
     console.log("File Path:", filePath);
     
     const generatedPdfBytes = await generatePdf(buffer, value);
-    await fs.promises.mkdir(path.join("public", "images", "uploads"), { recursive: true });
 
     await fs.writeFile(filePath, generatedPdfBytes);
 
