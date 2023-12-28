@@ -14,8 +14,7 @@ export default function generatePages(page, value) {
             }
         }
     }else{
-        let stringArr=value.split(",")
-        console.log(stringArr)
+        let stringArr = value.split(",")
         stringArr.forEach((item)=>{
             if(item.length>1){
                 start=item[0]

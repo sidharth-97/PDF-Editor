@@ -11,14 +11,13 @@ const Dashboard = () => {
     async function yourPdf() {
       const response = await fetch(`/api/users/${session?.user.id}/dashboard`);
       const Data = await response.json();
-      console.log(Data, "data from dashboard");
       setData(Data);
     }
     yourPdf();
   }, [session]);
   return (
     <div>
-      <h1>Your pdf</h1>
+      <h1 className="text-center text-2xl font-bold mt-5 underline">Your pdf</h1>
       {Data?.length > 0 ? (
         <div className="grid grid-cols-2 lg:grid-cols-5 md:grid-cols-3 gap-y-4 gap-x-4 mt-10 p-2">
           {Data.map((item, index) => (

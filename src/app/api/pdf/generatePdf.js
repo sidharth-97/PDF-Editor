@@ -8,11 +8,14 @@ console.log(pageCount);
   const pdfDoc = await PDFDocument.create();
   const numbers = generatePages(pageCount, value)
   console.log(numbers);
-    for (const i in numbers) {
+  for (const pageNumber of numbers) {
+    // Ensure the page number is within bounds
+    if (pageNumber >= 1 && pageNumber <= pageCount) {
       const firstDonorPdfDoc = await PDFDocument.load(pdfBytes);
-    const [firstDonorPage] = await pdfDoc.copyPages(firstDonorPdfDoc, [i]);
-    pdfDoc.addPage(firstDonorPage);
+      const [firstDonorPage] = await pdfDoc.copyPages(firstDonorPdfDoc, [pageNumber - 1]);
+      pdfDoc.addPage(firstDonorPage);
     }
+  }
     const generatedPdfBytes = await pdfDoc.save();
     return generatedPdfBytes;
   };

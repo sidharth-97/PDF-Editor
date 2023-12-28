@@ -5,12 +5,10 @@ import User from "../../../models/user";
 
 cloudinary.config(process.env.CLOUDINARY_URL || "");
 
-export const config = {
-  api: { bodyParser: false },
-};
+export const dynamic = 'auto';
 
 export async function POST(req) {
-  let cloudinaryResult; // Move the declaration outside
+  let cloudinaryResult;
 
   try {
     const formData = await req.formData();
@@ -34,6 +32,7 @@ export async function POST(req) {
       const cloudinaryUpload = cloudinary.uploader.upload_stream(
         {
           resource_type: "raw",
+          format: 'pdf',
         },
         (error, result) => {
           if (error) {

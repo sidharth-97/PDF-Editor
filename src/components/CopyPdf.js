@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
 
-const readFileAsArrayBuffer = (file: File): Promise<ArrayBuffer> => {
+const readFileAsArrayBuffer = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (event) => {
-      const result = event.target?.result as ArrayBuffer;
+      const result = event.target?.result;
       resolve(result);
     };
     reader.onerror = reject;
@@ -13,9 +13,9 @@ const readFileAsArrayBuffer = (file: File): Promise<ArrayBuffer> => {
   });
 };
 
-async function generatePdf(PdfBytes: string | Uint8Array | ArrayBuffer) {
+async function generatePdf(PdfBytes) {
   const pdfDoc = await PDFDocument.create();
-  const pdf = await readFileAsArrayBuffer(PdfBytes as any);
+  const pdf = await readFileAsArrayBuffer(PdfBytes);
   const firstDonorPdfDoc = await PDFDocument.load(pdf);
   const [firstDonorPage] = await pdfDoc.copyPages(firstDonorPdfDoc, [0]);
   pdfDoc.addPage(firstDonorPage);
@@ -23,8 +23,8 @@ async function generatePdf(PdfBytes: string | Uint8Array | ArrayBuffer) {
   return pdfBytes;
 }
 
-const CopyPdf = ({ PdfBytes }: any) => {
-  const [pdf, setPdf] = useState<PDFDocument | null>(null);
+const CopyPdf = ({ PdfBytes }) => {
+  const [pdf, setPdf] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -33,9 +33,7 @@ const CopyPdf = ({ PdfBytes }: any) => {
         setLoading(true);
         const result = await generatePdf(PdfBytes);
         setPdf(result);
-        console.log(result, "this is the pdf bytes");
       } catch (error) {
-        console.error('Error generating PDF:', error);
       } finally {
         setLoading(false);
       }

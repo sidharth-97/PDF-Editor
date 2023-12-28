@@ -1,20 +1,23 @@
 "use client";
 import { ChangeEvent, useRef, useState } from "react";
 import Button from "@mui/material/Button";
-import CopyPdf from "./CopyPdf";
 import ViewPdf from "./ViewPdf";
+import { useSession } from "next-auth/react";
+import {toast} from 'react-toastify'
 
-const PdfSelector: React.FC = () => {
-    const [file,setFile]=useState<File|null>(null)
-  const fileRef = useRef<HTMLInputElement | null>(null);
+const PdfSelector= () => {
+  const { data: session } = useSession();
+    const [file,setFile]=useState(null)
+  const fileRef = useRef(null);
   const handleClick = () => {
+    if(!session)return toast.error("Please login to continue")
     if (fileRef.current) {
       fileRef?.current?.click();
-    }
+    } 
   };
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e) => {
     const selectedFile = e.target.files?.[0];
-    setFile(selectedFile as File) 
+    setFile(selectedFile) 
     };
     
   return (
@@ -38,7 +41,7 @@ const PdfSelector: React.FC = () => {
           onChange={handleFileChange}
         />
         <Button
-          className="text-white bg-red-500 font-semibold hover:bg-red-400"
+          style={{ backgroundColor: '#e53e3e', color: 'white' }}
           variant="contained"
           onClick={handleClick}
         >

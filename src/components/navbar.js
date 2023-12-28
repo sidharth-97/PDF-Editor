@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { Button } from "@mui/material";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -21,12 +22,12 @@ const Navbar = () => {
       <div className="flex flex-no-shrink items-stretch h-12">
         <Link
           href="/"
-          className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300"
+          className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300 text-xl font-bold"
         >
           PDF Editor
         </Link>
 
-        <button className="block lg:hidden cursor-pointer ml-auto relative w-12 h-12 p-4">
+        <button className="block hidden cursor-pointer ml-auto relative w-12 h-12 p-4">
           <svg
             className="fill-current text-black"
             xmlns="http://www.w3.org/2000/svg"
@@ -48,13 +49,13 @@ const Navbar = () => {
           <div className="lg:flex lg:items-stretch lg:justify-end ml-auto">
             <Link
               href="/dashboard"
-              className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300"
+              className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300 font-semibold"
             >
-              Your pdfs
+              Dashboard
             </Link>
             <Button
               onClick={signOut}
-              className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300"
+              className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300 font-semibold"
             >
               Sign out
             </Button>
@@ -69,7 +70,7 @@ const Navbar = () => {
                   type="button"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
-                  className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300"
+                  className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-black no-underline flex items-center hover:bg-gray-300 font-semibold"
                 >
                   Sign In
                 </button>

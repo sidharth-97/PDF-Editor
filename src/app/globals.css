@@ -25,3 +25,20 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
+.custom-pdf-page .react-pdf__Page__textContent {
+  display: none;
+  height: 0;
+}
+
+.custom-pdf-page .react-pdf__Page__annotations .annotationLayer{
+display: none;
+height: 0;
+}
+
+.react-pdf__Page__annotations {
+  height: 0 !important;
+}
+
+.annotationLayer {
+  height: 0 !important;
+}
