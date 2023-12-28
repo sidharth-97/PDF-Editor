@@ -4,7 +4,6 @@
 
 Welcome to the PDF Editor, a web application built with Next.js. This project aims to provide users with a convenient platform for editing and manipulating PDF files.
 
-Live link: [PDF Editor](https://pdf-editor-lime-six.vercel.app/)
 
 ## Features
 
