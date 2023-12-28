@@ -4,7 +4,7 @@
 
 Welcome to the PDF Editor, a web application built with Next.js. This project aims to provide users with a convenient platform for editing and manipulating PDF files.
 
-live link: https://pdf-editor-lime-six.vercel.app/
+Live link: [PDF Editor](https://pdf-editor-lime-six.vercel.app/)
 
 ## Features
 
@@ -16,13 +16,14 @@ live link: https://pdf-editor-lime-six.vercel.app/
 ## Getting Started
 
 1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/sidharth-97/PDF-Editor.git
-  
+    ```bash
+    git clone https://github.com/sidharth-97/PDF-Editor.git
+    ```
 
 2. **Install Dependencies:**
-  ```bash
-  npm install
+    ```bash
+    npm install
+    ```
 
 3. **Add environment variables:**
     ```bash
@@ -32,9 +33,10 @@ live link: https://pdf-editor-lime-six.vercel.app/
     NEXTAUTH_URL=http://localhost:3000
     NEXTAUTH_URL_INTERNAL=NEXTAUTH_URL
     NEXTAUTH_SECRET=random id 
-    CLOUDINARY_URL=url form cloudinary
+    CLOUDINARY_URL=url from cloudinary
+    ```
 
 4. **Run the application:**
-
-  ```bash
-  npm run dev
+    ```bash
+    npm run dev
+    ```
